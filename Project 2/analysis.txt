@@ -1,0 +1,58 @@
+Complexity Analysis
+
+First: Evaluate the if statement's test
+-- The complexity of !empty() is O(1) because it is two equivalence tests (O(1))
+
+Second: Evaluate the while loop
+-- The complexity of the while loop is the sum of the complexity of the statements in the loop and the amount of iterations
+-- The complexity of std::swap(itr->next, itr->prev); is O(1)
+-- itr = itr->prev; is an assignment, so it has a complexity of O(1)
+-- The while loop runs N times, which is a complexity of O(N)
+-- So the complexity of the while loop is O(N) + O(1) + O(1) which simplifies to O(N)
+
+Third: Evaluate the statements within the if statement
+-- auto itr = head; is an assignment of complexity O(1)
+-- From part 2, we know the complexity of the while loop is O(N)
+-- Therefore, the complexity of the statements within the if statement is O(N) + O(1) which is simplified to O(N)
+
+Fourth: Evaluating the whole if statement.
+-- The complexity of an if statement is the complexity of the test plus the most complex statement body (if multiple)
+-- From part 1, we know the complexity of the test is O(1)
+-- From part 3, we know the complexity of the statement body is O(N)
+-- Therefore, the complexity of the whole if statement is O(N)
+
+Finally: Evaluate reverse()
+-- From part 4, we know the complexity of the if statement is O(N)
+-- The only remaining line, std::swap(head,tail);, is of complexity O(1)
+-- So, the complexity of reverse() is O(N) + O(1) which is simplified to O(N)
+
+Answer: Therefore, reverse() will have a complexity of O(N).
+
+
+// Referenced Code (List.hpp):
+
+void List<T>::reverse()
+{
+  if(!empty())				// O(N) + O(N)
+  {
+    auto itr = head; 			// O(1)
+    while(itr != nullptr)		// O(N) + O(1) + O(1)
+    {
+      std::swap(itr->next, itr->prev);	// O(1)
+      itr = itr->prev;			// O(1)
+    }
+  }
+  std::swap(head,tail); 		// O(1)
+}
+
+template<typename T>
+bool List<T>::empty() const
+{
+  return size() == 0;			// O(1)
+}
+
+template<typename T>
+int List<T>::size() const
+{
+  return theSize;
+}

@@ -1,0 +1,26 @@
+Complexity Analysis of makeEmpty(BinaryNode* &t):
+--------------------------------------------
+Complexity:  O(n) [linear]
+Explanation: makeEmpty() is a recursive function which iterates from the root
+             of the tree down through all leaves, deleting the lowest points first
+             from left to right. This recursion has no loops and just deletes BinaryNodes
+             dependent on the size of the tree. Therefore the Big-O complexity of the
+             recursive deletion is linear, dependent on the size of the three n.
+Argument:    Recursion would be faster than using a loop because a loop would require
+             the tree size to be determined, which would require iterating through the
+             tree to determine size, making the complexity twice as large, requiring both
+             a loop and an iteration rather than just a loop.
+
+
+Referenced Code:
+--------------------------------------------
+void BET::makeEmpty(BinaryNode* &t)
+{
+    if(t != NULL)
+    {
+        makeEmpty(t->left);     // Release left child (and subsequent children)
+        makeEmpty(t->right);    // Release right child (and subsequent children)
+        delete t;               // Release self once children are released
+    }
+    t=NULL;                     // Release root
+}

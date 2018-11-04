@@ -1,0 +1,18 @@
+Stack<T>::clear() Implementation:
+
+template<typename T>
+void Stack<T>::clear()
+{
+  data.clear(); // Where data is a std::vector<T>
+}
+
+Complexity:  O(n) [linear]
+Explanation: The Stack class is built using the stl::vector class.
+             So, Stack<T>::clear() calls the stl::vector version of clear()
+             which functions by iterating through the array, destroying
+             each element. Because this process is dependent on the length
+             of the array/vector, it's complexity is linear (O(n)).
+             Therefore, Stack<T>::clear() shares the same complexity.
+Argument:    Stack class was built upon slt:vector instead of as a linked list
+             because the array/vector can be accessed from the begining or from an
+             known element.
